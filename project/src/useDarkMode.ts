@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export function useDarkMode() {
-  const [dark, setDark] = useState<boolean>(() => {
+  const [dark, setDark] = useState(() => {
     const saved = localStorage.getItem('notas:theme');
     if (saved) return saved === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
