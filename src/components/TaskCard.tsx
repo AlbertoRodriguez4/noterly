@@ -80,6 +80,12 @@ export function TaskCard({ task, onToggle, onEdit, onDelete }: Props) {
             </span>
           )}
 
+          {task.startTime && (
+            <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
+              {task.startTime}{task.endTime ? ` - ${task.endTime}` : ''}
+            </span>
+          )}
+
           {task.dueDate && (
             <span
               className={`inline-flex items-center gap-1 text-xs font-medium ${

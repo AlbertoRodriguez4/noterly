@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { X, Calendar } from 'lucide-react';
+import { X, Calendar, Clock } from 'lucide-react';
 import type { Task, TaskPriority } from '../types';
 
 interface Props {
   open: boolean;
   initial: Task | null;
   onClose: () => void;
-  onSave: (data: { text: string; priority: TaskPriority; dueDate: string | null }) => void;
+  onSave: (data: { text: string; priority: TaskPriority; dueDate: string | null; startTime: string | null; endTime: string | null; estimatedMinutes: number }) => void;
 }
 
 const PRIORITY_OPTIONS: { value: TaskPriority; label: string }[] = [
@@ -19,6 +19,9 @@ export function TaskModal({ open, initial, onClose, onSave }: Props) {
   const [text, setText] = useState('');
   const [priority, setPriority] = useState<TaskPriority>('medium');
   const [dueDate, setDueDate] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [estimatedMinutes, setEstimatedMinutes] = useState<number | ''>('');
   const taRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -26,6 +29,9 @@ export function TaskModal({ open, initial, onClose, onSave }: Props) {
       setText(initial?.text ?? '');
       setPriority(initial?.priority ?? 'medium');
       setDueDate(initial?.dueDate ?? '');
+      setStartTime(initial?.startTime ?? '');
+      setEndTime(initial?.endTime ?? '');
+      setEstimatedMinutes(initial?.estimatedMinutes || '');
       setTimeout(() => {
         taRef.current?.focus();
         taRef.current?.setSelectionRange(taRef.current.value.length, taRef.current.value.length);
@@ -47,7 +53,14 @@ export function TaskModal({ open, initial, onClose, onSave }: Props) {
   const canSave = text.trim().length > 0;
 
   const handleSubmit = () => {
-    if (canSave) onSave({ text: text.trim(), priority, dueDate: dueDate || null });
+    if (canSave) onSave({ 
+      text: text.trim(), 
+      priority, 
+      dueDate: dueDate || null, 
+      startTime: startTime || null, 
+      endTime: endTime || null,
+      estimatedMinutes: typeof estimatedMinutes === 'number' ? estimatedMinutes : 0
+    });
   };
 
   return (
@@ -139,9 +152,63 @@ export function TaskModal({ open, initial, onClose, onSave }: Props) {
               )}
             </div>
           </div>
+          <div className="flex gap-3">
+            <div className="flex-1">
+              <label className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <Clock className="w-3 h-3" />
+                Hora de inicio (opcional)
+              </label>
+              <input
+                type="time"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
+              />
+            </div>
+            <div className="flex-1">
+              <label className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <Clock className="w-3 h-3" />
+                Hora de fin (opcional)
+              </label>
+              <input
+                type="time"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+              <Clock className="w-3 h-3" />
+              Tiempo estimado (min) (opcional)
+            </label>
+            <div className="flex items-center gap-2 mb-2">
+              <input
+                type="number"
+                min="0"
+                value={estimatedMinutes}
+                onChange={(e) => setEstimatedMinutes(e.target.value ? parseInt(e.target.value) : '')}
+                placeholder="Ej. 45"
+                className="w-24 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
+              />
+              <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar flex-1">
+                {[15, 30, 60, 120].map((mins) => (
+                  <button
+                    key={mins}
+                    onClick={() => setEstimatedMinutes(mins)}
+                    className="flex-shrink-0 px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-xs font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    {mins >= 60 ? `${mins / 60}h` : `${mins}m`}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="flex gap-2 px-5 pb-5">
+        <div className="flex gap-2 px-5 pb-5 flex-shrink-0 border-t border-gray-100 dark:border-gray-800 pt-4">
           <button
             onClick={onClose}
             className="flex-1 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"

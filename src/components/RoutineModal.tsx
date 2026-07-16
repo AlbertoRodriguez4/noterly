@@ -11,7 +11,8 @@ interface Props {
     description: string | null;
     frequency: Frequency;
     days: number[];
-    timeOfDay: string | null;
+    startTime: string | null;
+    endTime: string | null;
   }) => void;
 }
 
@@ -39,7 +40,8 @@ export function RoutineModal({ open, initial, onClose, onSave }: Props) {
   const [description, setDescription] = useState('');
   const [frequency, setFrequency] = useState<Frequency>('daily');
   const [days, setDays] = useState<number[]>([1]);
-  const [timeOfDay, setTimeOfDay] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -48,7 +50,8 @@ export function RoutineModal({ open, initial, onClose, onSave }: Props) {
       setDescription(initial?.description ?? '');
       setFrequency(initial?.frequency ?? 'daily');
       setDays(initial?.days ?? [1]);
-      setTimeOfDay(initial?.timeOfDay ?? '');
+      setStartTime(initial?.startTime ?? '');
+      setEndTime(initial?.endTime ?? '');
       setTimeout(() => inputRef.current?.focus(), 60);
     }
   }, [open, initial]);
@@ -79,7 +82,8 @@ export function RoutineModal({ open, initial, onClose, onSave }: Props) {
       description: description.trim() || null,
       frequency,
       days: frequency === 'weekly' || frequency === 'custom' ? days : [],
-      timeOfDay: timeOfDay || null,
+      startTime: startTime || null,
+      endTime: endTime || null,
     });
   };
 
@@ -185,17 +189,31 @@ export function RoutineModal({ open, initial, onClose, onSave }: Props) {
             </div>
           )}
 
-          <div>
-            <label className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 block flex items-center gap-1.5">
-              <Clock className="w-3 h-3" />
-              Hora preferida (opcional)
-            </label>
-            <input
-              type="time"
-              value={timeOfDay}
-              onChange={(e) => setTimeOfDay(e.target.value)}
-              className="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
-            />
+          <div className="flex gap-3">
+            <div className="flex-1">
+              <label className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <Clock className="w-3 h-3" />
+                Hora de inicio (opcional)
+              </label>
+              <input
+                type="time"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
+              />
+            </div>
+            <div className="flex-1">
+              <label className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <Clock className="w-3 h-3" />
+                Hora de fin (opcional)
+              </label>
+              <input
+                type="time"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
+              />
+            </div>
           </div>
         </div>
 

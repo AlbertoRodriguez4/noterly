@@ -106,8 +106,10 @@ export function RoutineCard({ routine, onMarkDone, onEdit, onDelete }: Props) {
             </div>
           )}
 
-          {routine.timeOfDay && (
-            <span className="text-xs text-gray-400 dark:text-gray-500">{routine.timeOfDay}</span>
+          {routine.startTime && (
+            <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
+              {routine.startTime}{routine.endTime ? ` - ${routine.endTime}` : ''}
+            </span>
           )}
 
           {routine.streak > 0 && (
