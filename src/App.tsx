@@ -21,6 +21,7 @@ import { Toast } from './components/Toast';
 import { StreaksView } from './components/StreaksView';
 import { NotesView } from './components/NotesView';
 import { NoteModal } from './components/NoteModal';
+import { Onboarding } from './components/Onboarding';
 
 type View = 'tasks' | 'today' | 'all' | 'streaks' | 'notes';
 
@@ -43,6 +44,10 @@ export default function App() {
   const [editingRoutine, setEditingRoutine] = useState<Routine | null>(null);
   const [editingNote, setEditingNote] = useState<Note | null>(null);
   const [undoToast, setUndoToast] = useState<{ visible: boolean; taskId: string | null }>({ visible: false, taskId: null });
+  
+  // ─── Onboarding state ───
+  const [hasSeenOnboarding, setHasSeenOnboarding] = useLocalStorage('noterly-has-seen-onboarding', false);
+  const [onboardingOpen, setOnboardingOpen] = useState(!hasSeenOnboarding);
 
   // ─── Theme ───
   const { dark, toggle } = useDarkMode();
@@ -338,32 +343,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Tab navigation */}
-          <div className="flex gap-1 p-1 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 mb-4">
-            {(
-              [
-                { key: 'tasks' as const, label: 'Tareas', icon: CheckSquare },
-                { key: 'today' as const, label: 'Hoy', icon: RefreshCw },
-                { key: 'all' as const, label: 'Todas', icon: List },
-                { key: 'streaks' as const, label: 'Rachas', icon: Flame },
-                { key: 'notes' as const, label: 'Notas', icon: StickyNote },
-              ] as const
-            ).map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setView(tab.key)}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  view === tab.key
-                    ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
-                }`}
-              >
-                <tab.icon className="w-4 h-4" />
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
           {view === 'tasks' && <FilterChips filter={filter} setFilter={setFilter} counts={counts} />}
         </header>
 
@@ -474,6 +453,36 @@ export default function App() {
         </main>
       </div>
 
+      {/* ─── Tabs - Fixed at bottom ─── */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 z-20">
+        <div className="max-w-xl mx-auto px-4 py-3 flex justify-between gap-1 overflow-x-auto scrollbar-hide">
+          {(
+            [
+              { key: 'tasks' as const, label: 'Tareas', icon: CheckSquare },
+              { key: 'today' as const, label: 'Hoy', icon: RefreshCw },
+              { key: 'all' as const, label: 'Todas', icon: List },
+              { key: 'streaks' as const, label: 'Rachas', icon: Flame },
+              { key: 'notes' as const, label: 'Notas', icon: StickyNote },
+            ] as const
+          ).map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setView(tab.key)}
+              className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1 sm:px-4 py-2 rounded-xl transition-all flex-1 min-w-[3.5rem] ${
+                view === tab.key
+                  ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20'
+                  : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+              }`}
+            >
+              <tab.icon className={`w-5 h-5 sm:w-4 sm:h-4 ${view === tab.key ? 'animate-bounce-short' : ''}`} />
+              <span className={`text-[10px] sm:text-sm font-medium ${view === tab.key ? 'opacity-100' : 'opacity-0 sm:opacity-100 h-0 sm:h-auto overflow-hidden sm:overflow-visible transition-all duration-200'}`}>
+                {tab.label}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* ─── FAB ─── */}
       {view !== 'streaks' && (
         <button
@@ -482,7 +491,7 @@ export default function App() {
             else if (view === 'notes') setNoteModalOpen(true);
             else setRoutineModalOpen(true);
           }}
-          className="fixed bottom-6 right-6 w-14 h-14 rounded-2xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white shadow-lg shadow-blue-600/30 flex items-center justify-center transition-all duration-200 z-30"
+          className="fixed bottom-24 right-6 w-14 h-14 rounded-2xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white shadow-lg shadow-blue-600/30 flex items-center justify-center transition-all duration-200 z-30"
           aria-label="Añadir"
         >
           <Plus className="w-6 h-6" />
@@ -542,6 +551,13 @@ export default function App() {
         onClose={() => setSettingsOpen(false)}
         settings={aiSettings}
         onUpdateSettings={setAISettings}
+      />
+      <Onboarding
+        open={onboardingOpen}
+        onClose={() => {
+          setOnboardingOpen(false);
+          setHasSeenOnboarding(true);
+        }}
       />
     </div>
   );

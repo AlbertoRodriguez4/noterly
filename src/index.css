@@ -29,6 +29,17 @@
   }
 }
 
+/* Ocultar scrollbar para Chrome, Safari y Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ocultar scrollbar para IE, Edge y Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
