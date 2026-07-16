@@ -1,97 +1,97 @@
 <div align="center">
-  <img src="Noterly-Logo.jpg" alt="Noterly Logo" width="120" height="120" style="border-radius: 20%" />
+  <img src="Noterly-Logo.jpg" alt="Logo de Noterly" width="120" height="120" style="border-radius: 20%" />
   <h1>Noterly</h1>
-  <p><strong>A Next-Generation AI-Powered Productivity & Habit Tracking App</strong></p>
+  <p><strong>Aplicación de Productividad, Seguimiento de Hábitos y Notas con IA de Nueva Generación</strong></p>
 
   <p>
     <img src="https://img.shields.io/badge/React-18.x-blue?style=for-the-badge&logo=react" alt="React" />
     <img src="https://img.shields.io/badge/Vite-5.x-purple?style=for-the-badge&logo=vite" alt="Vite" />
     <img src="https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind" />
     <img src="https://img.shields.io/badge/Capacitor-Android-green?style=for-the-badge&logo=android" alt="Android" />
-    <img src="https://img.shields.io/badge/Puter.js-AI-FF6B6B?style=for-the-badge" alt="Puter AI" />
+    <img src="https://img.shields.io/badge/Puter.js-IA-FF6B6B?style=for-the-badge" alt="Puter AI" />
   </p>
 </div>
 
 ---
 
-## 🌟 Overview
+## 🌟 Visión General
 
-**Noterly** is a premium, modern, and highly responsive productivity application designed to help you organize your life effortlessly. By combining traditional task management, habit-forming routines, and quick notes with cutting-edge **Natural Language AI**, Noterly adapts to your workflow rather than forcing you to adapt to it.
+**Noterly** es una aplicación de productividad premium, moderna y altamente responsiva, diseñada para ayudarte a organizar tu vida sin esfuerzo. Al combinar la gestión tradicional de tareas, la creación de rutinas/hábitos y notas rápidas con la tecnología de punta de la **Inteligencia Artificial de Lenguaje Natural**, Noterly se adapta a tu flujo de trabajo en lugar de obligarte a adaptarte a ella.
 
-Available both as a Lightning-fast Web Application and a Native Android App.
+Disponible tanto como Aplicación Web ultrarrápida como Aplicación Nativa para Android.
 
-## ✨ Key Features
+## ✨ Funcionalidades Principales
 
-- 🧠 **AI Smart Planner (Puter.js)**: Tell the app what you want to achieve in natural language (e.g., *"I want to run 30 minutes every morning and read a book at night"*), and Noterly will automatically create the perfect routine and task breakdown for you.
-- 🔥 **Habits & Streaks**: Build consistency. Track your daily points, view your best streaks, and monitor your success rate globally.
-- 📝 **Color-Coded Quick Notes**: Keep track of brilliant ideas instantly with a beautiful, sticky-note style grid layout.
-- ↩️ **Smart Undo System**: Accidentally checked off a task? A quick, non-intrusive toast allows you to undo any action within 5 seconds.
-- ⏱️ **Time Estimation**: Block time efficiently by assigning estimated minutes to your tasks using quick shortcuts (15m, 30m, 1h, 2h).
-- 🌓 **Dark & Light Mode**: A meticulously crafted UI featuring glassmorphism, smooth micro-animations, and full theme support.
+- 🧠 **Planificador Inteligente (Puter.js)**: Dile a la app lo que quieres lograr usando lenguaje natural (ej. *"Quiero correr 30 minutos cada mañana y leer un libro por la noche"*), y Noterly creará automáticamente la rutina perfecta y el desglose de tareas para ti.
+- 🔥 **Hábitos y Rachas**: Construye consistencia. Haz un seguimiento de tus puntos diarios, visualiza tus mejores rachas y monitorea tu tasa de éxito global.
+- 📝 **Notas Rápidas por Colores**: Apunta ideas brillantes al instante con un diseño de cuadrícula tipo "post-it", muy visual y ordenado.
+- ↩️ **Sistema Inteligente de Deshacer**: ¿Marcaste una tarea por accidente? Una pequeña notificación (toast) te permite deshacer cualquier acción en un margen de 5 segundos.
+- ⏱️ **Estimación de Tiempo**: Organiza tus bloques de tiempo asignando minutos a tus tareas de forma sencilla, usando atajos rápidos (15m, 30m, 1h, 2h).
+- 🌓 **Modo Oscuro y Claro**: Una interfaz de usuario meticulosamente elaborada con "glassmorphism", microanimaciones fluidas y soporte completo de temas.
 
-## 🛠️ Tech Stack
+## 🛠️ Tecnologías Usadas
 
-- **Frontend Framework**: React 18
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS (with arbitrary values & custom animations)
-- **Icons**: Lucide React
-- **AI Integration**: Puter.js
-- **Mobile Wrapper**: Ionic Capacitor (Android)
-- **State Management**: Custom LocalStorage Hooks (Fully offline-first!)
+- **Framework Frontend**: React 18
+- **Empaquetador (Build Tool)**: Vite
+- **Estilos**: Tailwind CSS (con valores arbitrarios y animaciones personalizadas)
+- **Iconos**: Lucide React
+- **Integración de IA**: Puter.js
+- **Contenedor Móvil**: Ionic Capacitor (Android)
+- **Gestión del Estado**: Hooks personalizados de LocalStorage (¡Funciona 100% sin conexión!)
 
-## 🚀 Getting Started (Web Development)
+## 🚀 Empezando (Desarrollo Web)
 
-To get a local copy up and running, follow these simple steps:
+Para tener una copia local funcionando, sigue estos sencillos pasos:
 
-### Prerequisites
-- Node.js (v18 or higher recommended)
-- npm or yarn
+### Prerrequisitos
+- Node.js (versión 18 o superior recomendada)
+- npm o yarn
 
-### Installation
-1. Clone the repo
+### Instalación
+1. Clona el repositorio
    ```sh
    git clone https://github.com/AlbertoRodriguez4/noterly.git
    ```
-2. Navigate to the project directory
+2. Navega al directorio del proyecto
    ```sh
    cd noterly
    ```
-3. Install NPM packages
+3. Instala los paquetes de NPM
    ```sh
    npm install
    ```
-4. Start the development server
+4. Inicia el servidor de desarrollo
    ```sh
    npm run dev
    ```
 
-## 📱 Mobile Build (Android)
+## 📱 Compilación Móvil (Android)
 
-Noterly is fully configured to be compiled natively for Android using Capacitor.
+Noterly está completamente configurada para compilarse nativamente para Android usando Capacitor.
 
-1. Build the production web assets:
+1. Compila los recursos web de producción:
    ```sh
    npm run build
    ```
-2. Sync the web code to the Android project:
+2. Sincroniza el código web con el proyecto de Android:
    ```sh
    npx cap sync android
    ```
-3. Open the project in Android Studio to build the `.apk` or `.aab`:
+3. Abre el proyecto en Android Studio para construir el `.apk` o `.aab`:
    ```sh
    npx cap open android
    ```
-> **Note:** The Android project is configured to use AGP 8.1.2 and Java 17 for maximum compatibility across different Android Studio environments.
+> **Nota:** El proyecto de Android está configurado para usar AGP 8.1.2 y Java 17 para máxima compatibilidad entre diferentes versiones de Android Studio.
 
-## 🤝 Contributing
+## 🤝 Contribución
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Las contribuciones son lo que hace a la comunidad open source un lugar increíble para aprender, inspirar y crear. Cualquier contribución que hagas es **muy agradecida**.
 
-We follow standard **Gitflow** practices:
-- Develop new features on the `develop` branch or a `feature/` branch.
-- Submit a Pull Request targeting `develop`.
+Seguimos los estándares de la metodología **Gitflow**:
+- Desarrolla nuevas funcionalidades en la rama `develop` o en una rama `feature/`.
+- Envía un "Pull Request" apuntando a la rama `develop`.
 
 ---
 <div align="center">
-  <i>Designed and built with ❤️</i>
+  <i>Diseñado y construido con ❤️</i>
 </div>
