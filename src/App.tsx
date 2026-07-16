@@ -455,7 +455,7 @@ export default function App() {
 
       {/* ─── Tabs - Fixed at bottom ─── */}
       <div className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 z-20">
-        <div className="max-w-xl mx-auto px-4 py-3 flex justify-between gap-1 overflow-x-auto scrollbar-hide">
+        <div className="max-w-xl mx-auto px-2 sm:px-4 py-2 sm:py-3 flex justify-between gap-1 overflow-x-auto scrollbar-hide">
           {(
             [
               { key: 'tasks' as const, label: 'Tareas', icon: CheckSquare },
@@ -468,7 +468,7 @@ export default function App() {
             <button
               key={tab.key}
               onClick={() => setView(tab.key)}
-              className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1 sm:px-4 py-2 rounded-xl transition-all flex-1 min-w-[3.5rem] ${
+              className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1 sm:px-3 py-2 rounded-xl transition-all flex-1 min-w-[3rem] sm:min-w-[4rem] ${
                 view === tab.key
                   ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20'
                   : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'

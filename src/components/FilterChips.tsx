@@ -14,7 +14,7 @@ const FILTERS: { key: Filter; label: string }[] = [
 
 export function FilterChips({ filter, setFilter, counts }: Props) {
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       {FILTERS.map((f) => {
         const active = filter === f.key;
         const count = counts[f.key];
