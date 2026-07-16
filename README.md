@@ -20,6 +20,14 @@
 
 Disponible tanto como Aplicación Web ultrarrápida como Aplicación Nativa para Android.
 
+## 📥 Descargar la App (Android)
+
+¡Puedes instalar Noterly directamente en tu teléfono de forma gratuita!
+
+1. Ve a la página de **[Releases (Lanzamientos)](https://github.com/AlbertoRodriguez4/noterly/releases)** de este repositorio en GitHub.
+2. Descarga el archivo `.apk` de la última versión disponible (ej. `Noterly-v1.0.0.apk`).
+3. Abre el archivo en tu dispositivo Android para instalar la aplicación (asegúrate de dar permiso para instalar aplicaciones desconocidas si el móvil te lo pide).
+
 ## ✨ Funcionalidades Principales
 
 - 🧠 **Planificador Inteligente (Puter.js)**: Dile a la app lo que quieres lograr usando lenguaje natural (ej. *"Quiero correr 30 minutos cada mañana y leer un libro por la noche"*), y Noterly creará automáticamente la rutina perfecta y el desglose de tareas para ti.
